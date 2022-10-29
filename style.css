@@ -4,8 +4,15 @@
     border-color: white;
     text-align: center;
 }
+.entire{
+    margin-inline: auto;
+    padding-bottom: 50px;
+    max-width: 600px;
+    outline: 1px solid white;
+}
 .container{
-    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,11 +29,22 @@ button{
 }
 .board{
     height: 200px;
+    margin-inline: 100px;
+    overflow: hidden;
     background-color: gray;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+}
+.feedback{
+    background-color: black;
+    font-size: 30px;
+    color: red;
+}
+.pre{
+    text-align: right;
+    background-color: gray;
+    font-size: 50px;
+    margin: 0;
+    padding-top: 10px;
+    padding-right: 30px;
 }
 .display{
     background-color: gray;

@@ -16,21 +16,32 @@ numbers.forEach(n => {
 });
 operators.forEach(n => {
     n.addEventListener('click', function (){
+        // this if statement check if this is the first operation done to the number
         if (check != true){
-            o = n.getAttribute('id')
-            submitnumber(first)
-            operation = n.getAttribute('id')
-            first = parseInt(previous.innerHTML)
-            previous.innerHTML = first
-            board.innerHTML = o + ' '
+            // this if statement checks if the user has put in a number in the display and allows the option to change operations
+            if (board.innerHTML.length == 2){
+                o = n.getAttribute('id')
+                operation = n.getAttribute('id')
+                board.innerHTML = o + ' '
+                //the else statement allows the user to continuously calculate as they choose multiple operations as long as a number is given
+            }else{
+                o = n.getAttribute('id')
+                submitnumber(first)
+                operation = n.getAttribute('id')
+                first = parseFloat(previous.innerHTML)
+                previous.innerHTML = first
+                board.innerHTML = o + ' '
+            }
         }else{
+            //this if statement checks if the user inputed a number and if not asks them to do so
             if (board.innerHTML == ''){
                 feedback.innerHTML = 'select a number first!'
+                //this else statement takes the number given and operation chosen and displays it to the user.
             }else{
                 o = n.getAttribute('id')
                 check = false
                 operation = n.getAttribute('id')
-                first = parseInt(board.innerHTML)
+                first = parseFloat(board.innerHTML)
                 previous.innerHTML = first
                 board.innerHTML = o + ' '
             }
@@ -45,6 +56,7 @@ function cleardisplay(){
     first = 0
     second = 0
 }
+
 function add(x, y){
     return x + y
 }
@@ -57,37 +69,28 @@ function mul(x, y){
 function div(x, y){
     return x / y
 }
+
 function submitnumbers(x) {
-    if (x == ''){
+    check = true
+    if (board.innerHTML.length == 2){
         feedback.innerHTML = 'select a number first!'
         return
     }else{
-        y = parseInt(board.innerHTML.slice(2))
-        var result = 0
-        if (operation == 'x'){
-            result = mul(x, y)
-        }
-        if (operation == '/'){
-            result = div(x, y)
-        }
-        if (operation == '+'){
-            result = add(x, y)
-        }
-        if (operation == '-'){
-            result = sub(x, y)
-        }
-        board.innerHTML = result
-        check = true
-        previous.innerHTML = result
+        submitnumber(x)
+        board.innerHTML = ''
         return
     }
 }
+function previousans(){
+    board.innerHTML = previous.innerHTML
+    return
+}
 function submitnumber(x) {
+    y = parseInt(board.innerHTML.slice(2))
     if (x == ''){
         feedback.innerHTML = 'select a number first!'
         return
     }else{
-        y = parseInt(board.innerHTML.slice(2))
         var result = 0
         if (operation == 'x'){
             result = mul(x, y)
